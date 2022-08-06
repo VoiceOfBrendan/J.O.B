@@ -10,6 +10,20 @@ bot = commands.Bot(command_prefix='!')
 
 
 @bot.event
+async def on_ready(ctx):
+    embed = discord.Embed(
+        title = 'J.O.B. - Everybody, Everywhere, Everyday needs a job!',
+        description = 'Welcome to J.O.B. see the guide below for information on our bot!'
+    )
+    embed.set_footer(text='Please contact an Admin if you still have questions.')
+    embed.set_image(url='https://ecress.weebly.com/uploads/1/3/8/7/138724180/published/image-2022-07-06-192102163.png?1657160470')
+    embed.add_field(name='Job Link:', value='Change your job searching roles by using !changeJob @your server name role. EX !changeJob @J.O.B Computer Science', inline=False)
+    embed.add_field(name='Job Link:', value='Have job links delivered in a matter of seconds with !displaySearch. Make sure you have set your role first!', inline=False)
+    embed.add_field(name='Job Link:', value='Found a job you think would better suit a friend? !sendJob @username. EX !sendJob @J.O.B', inline=False)
+
+    await ctx.send(embed=embed)
+
+@bot.event
 async def on_command_error(ctx, error):
     if isinstance(error, commands.CommandNotFound):
         await ctx.send('Invalid command used. Use !help to see valid commands.')
